@@ -17,7 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      if: compiler
       run: mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=${{matrix.compiler}} .. 
     - name: build
       run: cmake --build .
