@@ -9,16 +9,6 @@ jobs:
         container: [conanio/gcc49, conanio/gcc5]
         generator: Unix Makefiles
         runs-on: ubuntu-18.04
-      matrix:
-        container: [conanio/clang6, conanio/clang7]
-        generator: Unix Makefiles
-        runs-on: ubuntu-18.04
-      matrix:
-        include:
-          - runs-on: windows-2019
-            generator: Visual Studio 16 2019
-          - runs-on: windows-2016
-            generator: Visual Studio 15 2017
     steps:
     - uses: actions/checkout@v1
     - name: build
