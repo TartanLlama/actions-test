@@ -7,12 +7,17 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        container: [conanio/gcc49, conanio/gcc5, conanio/clang6]
-        os: [ubuntu-18.04]
         includes:
-          - os: windows-2019
-          - os: windows-2016
+          - os: ubuntu-18.04
+            container: conanio/gcc49
+            compiler: g++4.9
+          - os: ubuntu-18.04
+            container: conanio/clang5
+            compiler: clang++-5.0
     steps:
     - uses: actions/checkout@v1
+    - name: configure
+      if: compiler
+      run: mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=${{matrix.compiler}} .. 
     - name: build
-      run: mkdir build && cd build && cmake .. && cmake --build .
+      run: cmake --build .
