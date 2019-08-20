@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      run: mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=${{matrix.compiler}} ..
+      run: sudo mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=${{matrix.compiler}} ..
     - name: set var
       run: export CXX=`echo '${{ matrix.compiler }}' | sed ''s/\([^0-9][0-9]\)$/\10/;s/gcc/g++-/;s/clang/clang++-/;s/\([0-9]\)$/.\1/'`
     - name: build
