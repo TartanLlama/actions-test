@@ -1,0 +1,14 @@
+name: Optional CI
+
+on: [push]
+
+jobs:
+  strategy:
+    matrix:
+      container: [conanio/gcc49, conanio/gcc5]
+
+  build: 
+    steps:
+    - uses: actions/checkout@v1
+    - name: build
+      run: mkdir build && cd build && cmake .. && cmake --build .
