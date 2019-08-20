@@ -7,9 +7,9 @@ jobs:
     strategy:
       matrix:
         container: [conanio/gcc49, conanio/gcc5]
-        generator: Unix Makefiles
+        cmake-generator: Unix Makefiles
         runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
     - name: build
-      run: mkdir build && cd build && cmake -G ${{matrix.generator}} .. && cmake --build .
+      run: mkdir build && cd build && cmake -G ${{matrix.cmake-generator}} .. && cmake --build .
