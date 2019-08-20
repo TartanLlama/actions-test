@@ -4,17 +4,18 @@ on: [push]
 
 jobs:
   build: 
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         container: [conanio/gcc49, conanio/gcc5]
-        runs-on: ubuntu-18.04
+        os: ubuntu-18.04
       matrix:
         container: [conanio/clang6, conanio/clang7]
-        runs-on: ubuntu-18.04
+        on: ubuntu-18.04
       matrix:
         include:
-          - runs-on: windows-2019
-          - runs-on: windows-2016
+          - os: windows-2019
+          - os: windows-2016
     steps:
     - uses: actions/checkout@v1
     - name: build
