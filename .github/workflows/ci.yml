@@ -5,15 +5,13 @@ on: [push]
 jobs:
   build: 
     runs-on: ${{ matrix.os }}
+    container: conanio/${{compiler}}
     strategy:
       matrix:
+        compiler: [gcc49, gcc50, gcc51, gcc52, clang5, clang6, clang7]
+        os: [ubuntu-18.04]
         includes:
-          - os: ubuntu-18.04
-            container: conanio/gcc49
-            compiler: g++4.9
-          - os: ubuntu-18.04
-            container: conanio/clang5
-            compiler: clang++-5.0
+          - os: windows-2019
     steps:
     - uses: actions/checkout@v1
     - name: configure
