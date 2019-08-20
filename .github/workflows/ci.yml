@@ -8,7 +8,7 @@ jobs:
     container: conanio/${{ matrix.compiler }}
     strategy:
       matrix:
-        compiler: [gcc49, gcc50, gcc51, gcc52, clang5, clang6, clang7]
+        compiler: [gcc49, gcc5, gcc51, gcc52, clang50, clang60, clang70]
         os: [ubuntu-18.04]
         includes:
           - os: windows-2019
