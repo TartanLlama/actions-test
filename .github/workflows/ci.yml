@@ -7,8 +7,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        container: [conanio/gcc49, conanio/gcc5]
+        container: [conanio/gcc49, conanio/gcc5, conanio/clang6]
         os: [ubuntu-18.04]
+        includes:
+          - os: windows-2019
+          - os: windows-2016
     steps:
     - uses: actions/checkout@v1
     - name: build
