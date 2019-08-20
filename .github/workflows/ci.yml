@@ -3,11 +3,12 @@ name: Optional CI
 on: [push]
 
 jobs:
-  strategy:
-    matrix:
-      container: [conanio/gcc49, conanio/gcc5]
-
   build: 
+    strategy:
+      matrix:
+        container: [conanio/gcc49, conanio/gcc5]
+
+ 
     steps:
     - uses: actions/checkout@v1
     - name: build
