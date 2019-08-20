@@ -8,7 +8,7 @@ jobs:
       matrix:
         container: [conanio/gcc49, conanio/gcc5]
 
- 
+    runs-on: ubuntu-18.04 
     steps:
     - uses: actions/checkout@v1
     - name: build
