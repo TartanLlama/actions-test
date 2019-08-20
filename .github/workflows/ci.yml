@@ -7,9 +7,15 @@ jobs:
     strategy:
       matrix:
         container: [conanio/gcc49, conanio/gcc5]
-        cmake-generator: Unix Makefiles
         runs-on: ubuntu-18.04
+      matrix:
+        container: [conanio/clang6, conanio/clang7]
+        runs-on: ubuntu-18.04
+      matrix:
+        include:
+          - runs-on: windows-2019
+          - runs-on: windows-2016
     steps:
     - uses: actions/checkout@v1
     - name: build
-      run: mkdir build && cd build && cmake -G ${{matrix.cmake-generator}} .. && cmake --build .
+      run: mkdir build && cd build && cmake .. && cmake --build .
