@@ -8,7 +8,7 @@ jobs:
     container: conanio/${{ matrix.compiler }}
     strategy:
       matrix:
-        compiler: [gcc49, gcc5, gcc52, clang50, clang60, clang70]
+        compiler: [gcc49, gcc5, gcc52, clang50, clang60, clang7, clang8, clang9]
         os: [ubuntu-18.04]
         includes:
           - os: windows-2019
@@ -17,6 +17,6 @@ jobs:
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=${{matrix.compiler}} ..
     - name: set var
-      run: export CXX=`echo '${{ matrix.compiler }}' | sed 's/gcc5/gcc50/;s/gcc/g++-/;s/clang/clang++-/;s/\([0-9]\)$/.\1/'`
+      run: export CXX=`echo '${{ matrix.compiler }}' | sed ''s/\([^0-9][0-9]\)$/\10/;s/gcc/g++-/;s/clang/clang++-/;s/\([0-9]\)$/.\1/'`
     - name: build
       run: cmake --build -DCMAKE_CXX_COMPILER=${CXX} .
