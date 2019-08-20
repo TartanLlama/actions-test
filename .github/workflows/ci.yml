@@ -9,13 +9,6 @@ jobs:
       matrix:
         container: [conanio/gcc49, conanio/gcc5]
         os: ubuntu-18.04
-      matrix:
-        container: [conanio/clang6, conanio/clang7]
-        on: ubuntu-18.04
-      matrix:
-        include:
-          - os: windows-2019
-          - os: windows-2016
     steps:
     - uses: actions/checkout@v1
     - name: build
