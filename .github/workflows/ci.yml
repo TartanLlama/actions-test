@@ -10,13 +10,13 @@ jobs:
       matrix:
         compiler: [gcc49, gcc5, gcc52, clang50, clang60, clang7, clang8]
         os: [ubuntu-18.04]
-        includes:
+        include:
           - os: windows-2019
     steps:
     - uses: actions/checkout@v1
-    - name: configure
-      run: sudo mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=${{matrix.compiler}} ..
     - name: set var
       run: export CXX=`echo '${{ matrix.compiler }}' | sed ''s/\([^0-9][0-9]\)$/\10/;s/gcc/g++-/;s/clang/clang++-/;s/\([0-9]\)$/.\1/'`
+    - name: configure
+      run: sudo mkdir build && cd build && sudo cmake -DCMAKE_CXX_COMPILER=${CXX} ..
     - name: build
-      run: cmake --build -DCMAKE_CXX_COMPILER=${CXX} .
+      run: cmake --build .
