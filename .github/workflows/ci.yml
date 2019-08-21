@@ -6,6 +6,8 @@ jobs:
   build: 
     strategy:
       matrix:
+        lol: []
+        include:
         - container: conanio/gcc5
           runs-on: ubuntu-18.04
         - container: conanio/gcc52
@@ -16,7 +18,7 @@ jobs:
           runs-on: ubuntu-18.04
         - container: conanio/clang6
           runs-on: ubuntu-18.04
-        - container: conanio/gcc5
+        - container: conanio/clang7
           runs-on: ubuntu-18.04
         - runs-on: macOS-10.14
         - runs-on: windows-2019
