@@ -4,29 +4,13 @@ on: [push]
 
 jobs:
   build: 
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
-        lol: [aoeu]
-        include:
-        - container: conanio/gcc5
-          runs-on: ubuntu-18.04
-        - container: conanio/gcc52
-          runs-on: ubuntu-18.04
-        - container: conanio/gcc60
-          runs-on: ubuntu-18.04
-        - container: conanio/gcc70
-          runs-on: ubuntu-18.04
-        - container: conanio/clang6
-          runs-on: ubuntu-18.04
-        - container: conanio/clang7
-          runs-on: ubuntu-18.04
-        - runs-on: macOS-10.14
-        - runs-on: windows-2019
-        - runs-on: windows-2016
+        container: [conanio/gcc5, conanio/gcc60, conanio/clang7]
           
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      run: sudo mkdir build && cd build && sudo cmake ..
-    - name: build
-      run: cmake --build .
+      uses: ${{matrix.container}}
+      run: mkdir build && cd build && cmake .. && cmake --build .
