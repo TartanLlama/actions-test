@@ -5,18 +5,14 @@ on: [push]
 jobs:
   build: 
     runs-on: ${{ matrix.os }}
-    container: conanio/${{ matrix.compiler }}
+    container: conanio/${{ matrix.compiler[0] }}
     strategy:
       matrix:
-        compiler: [gcc49, gcc5, gcc52, clang50, clang60, clang7, clang8]
+        compiler: [[gcc49,g++-4.9], [gcc5, g++-5.0], [clang50, clang++-5.0]]
         os: [ubuntu-18.04]
-        include:
-          - os: windows-2019
     steps:
     - uses: actions/checkout@v1
-    - name: set var
-      run: export CXX=`echo '${{ matrix.compiler }}' | sed ''s/\([^0-9][0-9]\)$/\10/;s/gcc/g++-/;s/clang/clang++-/;s/\([0-9]\)$/.\1/'`
     - name: configure
-      run: sudo mkdir build && cd build && sudo cmake -DCMAKE_CXX_COMPILER=${CXX} ..
+      run: sudo mkdir build && cd build && sudo cmake -DCMAKE_CXX_COMPILER=${{matrix.compiler[1]}} ..
     - name: build
       run: cmake --build .
