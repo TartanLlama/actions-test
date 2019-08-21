@@ -8,7 +8,7 @@ jobs:
     container: ${{matrix.container}}
     strategy:
       matrix:
-        container: [conanio/gcc5, conanio/gcc60, conanio/clang7]
+        container: [conanio/gcc5, conanio/gcc6, conanio/clang7]
           
     steps:
     - uses: actions/checkout@v1
