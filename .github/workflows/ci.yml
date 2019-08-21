@@ -5,12 +5,12 @@ on: [push]
 jobs:
   build: 
     runs-on: ubuntu-18.04
+    container: ${{matrix.container}}
     strategy:
       matrix:
-        ct: [conanio/gcc5, conanio/gcc60, conanio/clang7]
+        container: [conanio/gcc5, conanio/gcc60, conanio/clang7]
           
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      uses: docker://conanio/gcc5
       run: mkdir build && cd build && cmake .. && cmake --build .
