@@ -15,4 +15,4 @@ jobs:
     - name: configure
       run: sudo mkdir build && cd build && sudo cmake .. && sudo cmake --build .
     - name: test
-      run: sudo ./tests
+      run: ./build/tests
