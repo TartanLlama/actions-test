@@ -14,4 +14,4 @@ jobs:
     - name: Build
       run: mkdir build && cd build && cmake .. && cmake --build .
     - name: Test
-      run: ./tests
+      run: ./build/tests
