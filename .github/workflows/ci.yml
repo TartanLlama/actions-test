@@ -6,7 +6,6 @@ jobs:
   build: 
     strategy:
       matrix:
-        include:
         - container: conanio/gcc5
           runs-on: ubuntu-18.04
         - container: conanio/gcc52
