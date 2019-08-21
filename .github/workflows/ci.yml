@@ -12,5 +12,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      uses: docker://${{ matrix.ct }}
+      uses: docker://conanio/gcc5
       run: mkdir build && cd build && cmake .. && cmake --build .
