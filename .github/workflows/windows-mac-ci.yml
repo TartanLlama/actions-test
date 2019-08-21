@@ -1,4 +1,4 @@
-name: Optional CI Windows
+name: Optional CI Windows + Mac
 
 on: [push]
 
@@ -7,9 +7,9 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-2016, windows-2019]
+        os: [windows-2016, windows-2019, macOS-10.14]
           
     steps:
     - uses: actions/checkout@v1
-    - name: configure
+    - name: build
       run: mkdir build && cd build && cmake .. && cmake --build .
