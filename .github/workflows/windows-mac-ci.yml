@@ -13,9 +13,3 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build
       run: mkdir build && cd build && cmake .. && cmake --build .
-    - name: Test Windows
-      if: ${{contains(matrix.os, "windows"}}
-      run: build\tests.exe
-    - name: Test Mac
-      if: ${{contains(matrix.os, "mac"}}
-      run: ./build/tests.exe
