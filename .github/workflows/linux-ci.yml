@@ -9,10 +9,10 @@ jobs:
     strategy:
       matrix:
         container: [gcc52, gcc53, gcc54, gcc63, gcc64, gcc7, gcc72, gcc8, gcc9, clang38, clang39, clang40, clang50, clang60, clang7, clang8]
-          
+        standard: [11,14,17]
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      run: sudo mkdir build && cd build && sudo cmake .. && sudo cmake --build .
+      run: sudo mkdir build && cd build && sudo cmake -DCXXSTD=${{matrix.standard}}.. && sudo cmake --build .
     - name: test
       run: ./build/tests
