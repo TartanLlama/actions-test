@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      run: ls && mkdir build && cd build && cmake .. && cmake --build .
+      run: sudo mkdir build && cd build && sudo cmake .. && sudo cmake --build .
