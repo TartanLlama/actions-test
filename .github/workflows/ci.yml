@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        container: [conanio/gcc5, conanio/gcc60, conanio/clang7]
+        ct: [conanio/gcc5, conanio/gcc60, conanio/clang7]
           
     steps:
     - uses: actions/checkout@v1
     - name: configure
-      uses: ${{matrix.container}}
+      uses: docker://${{matrix.ct}}
       run: mkdir build && cd build && cmake .. && cmake --build .
